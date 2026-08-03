@@ -227,17 +227,11 @@ async def create_signal(message: Message):
         "NZD/JPY OTC",
         "NZD/CAD OTC",
         "NZD/CHF OTC"
-        ]
+    ]
+
 
     pair = random.choice(pairs)
 
-    direction = random.choice(
-        [
-            "🟢 CALL",
-            "🔴 PUT"
-        ]
-    )
-
 
     direction = random.choice(
         [
@@ -245,6 +239,7 @@ async def create_signal(message: Message):
             "🔴 PUT"
         ]
     )
+
 
     minutes = int(
         message.text
@@ -253,11 +248,14 @@ async def create_signal(message: Message):
     )
 
 
-    now = datetime.now(ZoneInfo("Europe/Kyiv"))
+    # Київський час
+    now = datetime.now() + timedelta(hours=3)
+
 
     entry = now + timedelta(
         minutes=1
     )
+
 
     close = entry + timedelta(
         minutes=minutes
@@ -318,26 +316,21 @@ async def wait_finish(user_id):
 
     signal = active_signals[user_id]
 
+    kyiv_now = datetime.now() + timedelta(hours=3)
 
     seconds = (
-    signal["close"]
-    -
-    datetime.now(ZoneInfo("Europe/Kyiv"))
-).total_seconds()
-
+        signal["close"]
+        -
+        kyiv_now
+    ).total_seconds()
 
     if seconds > 0:
-
         await asyncio.sleep(seconds)
 
 
-
     keyboard = InlineKeyboardMarkup(
-
         inline_keyboard=[
-
             [
-
                 InlineKeyboardButton(
                     text="✅ Зайшло",
                     callback_data="win"
@@ -347,16 +340,12 @@ async def wait_finish(user_id):
                     text="❌ Не зайшло",
                     callback_data="loss"
                 )
-
             ]
-
         ]
-
     )
 
 
     await bot.send_message(
-
         user_id,
 
 f"""
@@ -371,8 +360,7 @@ f"""
 Оцініть результат:
 """,
 
-reply_markup=keyboard
-
+        reply_markup=keyboard
     )
 
 
