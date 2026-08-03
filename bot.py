@@ -2,6 +2,7 @@ import asyncio
 import random
 
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
@@ -252,7 +253,7 @@ async def create_signal(message: Message):
     )
 
 
-    now = datetime.now()
+    now = datetime.now(ZoneInfo("Europe/Kyiv"))
 
     entry = now + timedelta(
         minutes=1
@@ -319,10 +320,10 @@ async def wait_finish(user_id):
 
 
     seconds = (
-        signal["close"]
-        -
-        datetime.now()
-    ).total_seconds()
+    signal["close"]
+    -
+    datetime.now(ZoneInfo("Europe/Kyiv"))
+).total_seconds()
 
 
     if seconds > 0:
