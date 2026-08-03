@@ -277,9 +277,8 @@ async def create_signal(message: Message):
     }
 
 
-        await message.answer(
+    await message.answer(
         f"""
-        
 🎯 OTC SIGNAL
 
 💱 Пара:
@@ -299,9 +298,7 @@ async def create_signal(message: Message):
 
 ⏳ Очікуємо завершення...
 """,
-
         reply_markup=main_menu()
-
     )
 
 
