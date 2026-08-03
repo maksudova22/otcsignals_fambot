@@ -191,21 +191,7 @@ async def create_signal(message: Message):
 
     global total_signals
 
-
-@dp.message(
-    F.text.in_(
-        [
-            "⏱ 1 хв",
-            "⏱ 2 хв",
-            "⏱ 5 хв"
-        ]
-    )
-)
-async def create_signal(message: Message):
-
-    global total_signals
-
-pairs = [
+    pairs = [
         "EUR/USD OTC",
         "GBP/USD OTC",
         "USD/JPY OTC",
@@ -213,24 +199,34 @@ pairs = [
         "USD/CAD OTC",
         "USD/CHF OTC",
         "NZD/USD OTC",
+
         "EUR/GBP OTC",
         "EUR/JPY OTC",
-        "GBP/JPY OTC",
-        "AUD/JPY OTC",
-        "CAD/JPY OTC",
-        "CHF/JPY OTC",
         "EUR/AUD OTC",
         "EUR/CAD OTC",
+        "EUR/CHF OTC",
+        "EUR/NZD OTC",
+
+        "GBP/JPY OTC",
         "GBP/AUD OTC",
         "GBP/CAD OTC",
+        "GBP/CHF OTC",
+        "GBP/NZD OTC",
+
+        "AUD/JPY OTC",
         "AUD/CAD OTC",
         "AUD/CHF OTC",
+        "AUD/NZD OTC",
+
+        "CAD/JPY OTC",
+        "CAD/CHF OTC",
+
+        "CHF/JPY OTC",
+
         "NZD/JPY OTC",
         "NZD/CAD OTC",
         "NZD/CHF OTC"
     ]
-
-    pair = random.choice(pairs)
 
 
     pair = random.choice(pairs)
@@ -298,7 +294,7 @@ f"""
 ⏳ Очікуємо завершення...
 """,
 
-reply_markup=main_menu()
+        reply_markup=main_menu()
 
     )
 
@@ -308,7 +304,6 @@ reply_markup=main_menu()
             message.from_user.id
         )
     )
-
 
 
 # =====================
