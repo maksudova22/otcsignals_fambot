@@ -238,7 +238,14 @@ async def create_signal(message: Message):
     )
 
 
-        minutes = int(
+    direction = random.choice(
+        [
+            "🟢 CALL",
+            "🔴 PUT"
+        ]
+    )
+
+    minutes = int(
         message.text
         .replace("⏱ ", "")
         .replace(" хв", "")
