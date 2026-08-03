@@ -192,7 +192,20 @@ async def create_signal(message: Message):
     global total_signals
 
 
-       pairs = [
+@dp.message(
+    F.text.in_(
+        [
+            "⏱ 1 хв",
+            "⏱ 2 хв",
+            "⏱ 5 хв"
+        ]
+    )
+)
+async def create_signal(message: Message):
+
+    global total_signals
+
+pairs = [
         "EUR/USD OTC",
         "GBP/USD OTC",
         "USD/JPY OTC",
@@ -216,6 +229,8 @@ async def create_signal(message: Message):
         "NZD/CAD OTC",
         "NZD/CHF OTC"
     ]
+
+    pair = random.choice(pairs)
 
 
     pair = random.choice(pairs)
