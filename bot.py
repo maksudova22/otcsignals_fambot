@@ -226,12 +226,11 @@ async def create_signal(message: Message):
         "NZD/JPY OTC",
         "NZD/CAD OTC",
         "NZD/CHF OTC"
-    ]
+        ]
 
+    pair = random.choice(pairs)
 
-pair = random.choice(pairs)
-
-direction = random.choice(
+    direction = random.choice(
         [
             "🟢 CALL",
             "🔴 PUT"
@@ -239,7 +238,7 @@ direction = random.choice(
     )
 
 
-    minutes = int(
+        minutes = int(
         message.text
         .replace("⏱ ", "")
         .replace(" хв", "")
@@ -271,9 +270,9 @@ direction = random.choice(
     }
 
 
-    await message.answer(
-
-f"""
+        await message.answer(
+        f"""
+        
 🎯 OTC SIGNAL
 
 💱 Пара:
