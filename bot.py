@@ -229,9 +229,9 @@ async def create_signal(message: Message):
     ]
 
 
-    pair = random.choice(pairs)
+pair = random.choice(pairs)
 
-    direction = random.choice(
+direction = random.choice(
         [
             "🟢 CALL",
             "🔴 PUT"
